@@ -1,0 +1,3 @@
+http://www.sarathlakshman.com/2011/03/03/implementing-autocomplete-with-trie-data-structure
+https://www.developpez.net/forums/d304251/autres-langages/python/general-python/dictionnaire-francais-python/
+https://www.cnrtl.fr/lexiques/morphalou/
