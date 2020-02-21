@@ -10,29 +10,39 @@ if ($ID==0) erreur(ERR_IS_NOT_CO);
 
 if(empty($_POST['name'])){ 
     $is=1;
-    $x="legumes";
-    $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Légumes"');
-    $query->execute();
-    if($x=="fruits"){
-        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Fruits"');
+    if(!isset($_GET['x'])){
+        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Legumes"');
         $query->execute();
     }
-    if($x=="viandes"){
-        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Viandes"');
-        $query->execute();
+    else{
+
+        if($_GET['x']=="legumes"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Legumes"');
+            $query->execute();
+        }
+
+        if($_GET['x']=="fruits"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Fruits"');
+            $query->execute();
+        }
+        if($_GET['x']=="viandes"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Viandes"');
+            $query->execute();
+        }
+        if($_GET['x']=="condiments"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Condiments"');
+            $query->execute();
+        }
+        if($_GET['x']=="usuels"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Usuels"');
+            $query->execute();
+        }
+        if($_GET['x']=="liquides"){
+            $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE type="Liquides"');
+            $query->execute();
+        }
     }
-    if($x=="condiments"){
-        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Condiments"');
-        $query->execute();
-    }
-    if($x=="usuels"){
-        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Usuels"');
-        $query->execute();
-    }
-    if($x=="liquides"){
-        $query=$base->prepare('SELECT nomingredient FROM ingredients WHERE types="Liquides"');
-        $query->execute();
-    }
+    
 }
 
 else {
