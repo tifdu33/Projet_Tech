@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="../view/formulaire.css">
+    <link type="text/css" rel="stylesheet" href="../view/css.css">
     <title>Projet Technologique</title>
 </head>
 <body><div>
@@ -16,7 +16,7 @@
       <option value ="entree">Entrée</option>
       <option value ="plat">Plat</option>
       <option value ="gouter">Goûter</option>
-      <option value ="dessert">Desssert</option>
+      <option value ="dessert">Dessert</option>
       <option value ="diner">Diner</option>
       <option value ="boisson">Boisson</option>
     </select>
@@ -24,61 +24,31 @@
     <p>
     <label for="nb">Nombre de personnes : </label>  <input name="nb" type="text" id="nb" /> <br />
     <p>
-    <form method="post" action="../controler/new_recette.php" enctype="multipart/form-data">
-	<fieldset><legend>Ingrédients</legend>
-    <div class="form-group">
-    <label for="type">Type d'ingrédients :</label>
-    <p>
-   
-
-<div class="dropdown">
-  <button class="dropbtn">Catégorie</button>
-  <div class="dropdown-content">
-    <a href="../controler/new_recette.php?x=legumes">Légumes</a>
-    <a href="../controler/new_recette.php?x=fruits">Fruits</a>
-    <a href="../controler/new_recette.php?x=viandes">Viandes</a>
-    <a href="../controler/new_recette.php?x=condiments">Condiments</a>
-    <a href="../controler/new_recette.php?x=usuels">Usuels</a>
-    <a href="../controler/new_recette.php?x=liquides">Liquides</a>
-  </div>
-</div> 
-
-    <p>
       
-    <div class="form-group">
-    <select class="form-control" id="ingredient" name="ingredient">
-      <?php while($data=$query->fetch()){
-         $nom=$data['nomingredient'];?>
-      <option value ="bla" > <?php echo $nom ?></option>
-     <?php } ?>
-       
-    </select>
-    </div>
+    <SCRIPT LANGUAGE="JavaScript"> 
+      function PopupCentrer(page,largeur,hauteur,options) 
+      { 
+        var top=(screen.height-hauteur)/2; 
+        var left=(screen.width-largeur)/2; 
+        window.open(page,"","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options); 
+      } 
+      </SCRIPT> 
 
-    <p>
-    <label for="nb">Quantité : </label>  <input name="nb" type="text" id="nb" /> <br />
-    <div class="form-group">
-    <select class="form-control" id="quantite" name="quantite">
-      <option value ="L" href="#">L</option>
-      <option value ="kg"href="#">kg</option>
-      <option value ="pieces"href="#">pièces</option>
-    </select>
-    </div>
-    <p><input type="submit" value="Ajouter un ingrédient" /></p>
-</fieldset>
-    </form>
-    <p>
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">Ingrédients : </label><br />
-    TABLEAU D'INGREDIENTS
-    </div>
+      <form>
+      <input type='button' value='Ajouter les ingrédients' onClick='PopupCentrer("../controler/popup.php",500,500,"menubar=no,scrollbars=no,statusbar=no")'> 
+      </form>
+
+    
     <div class="form-group">
     <label for="exampleFormControlTextarea1">Etapes de la recette : </label>
     <p>
     <textarea class="form-control-box" id="etape" name="etape" rows="20" cols="40"></textarea>
     </div>
-	<p><input type="submit" value="Ajouter" /></p></fieldset></form>
+	  <p><input type="submit" value="Ajouter" /></p></fieldset></form>
     <p>Cliquez <a href="../view/index_view.php">ici</a> pour retourner à la page d'acceuil</p>
+
+    
+
 
 <?php } ?>
 

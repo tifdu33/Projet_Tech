@@ -44,6 +44,9 @@ if(empty($_POST['name'])){
             $query->execute();
         }
     }
+    $affiche=$base->prepare('SELECT nom,quantite,unite FROM tempo WHERE 1');
+    $affiche->execute();
+
     
 }
 
@@ -52,23 +55,21 @@ else {
     $nb=$_POST['nb'];
     $type=$_POST['type'];
     $etape=$_POST['etape'];
-    $ingredients=$_POST['ingredients'];
-	$query=$base->prepare('INSERT INTO recette(name,nb,type,ingredients,etape)VALUES(:name,:nb,:type,:ingredients,:etape)');
+	$query=$base->prepare('INSERT INTO recette(name,nb,type,etape)VALUES(:name,:nb,:type,:etape)');
 	$query->execute(array(
     'name' => $name,
     'nb' => $nb,
     'type' => $type,
-    'ingredients' => $ingredients,
     'etape'=> $etape
     ));
 
-    $queryrecette= $base->prepare('SELECT id_recette FROM asso');
-    $queryrecette->execute;
-    while ($data1=$queryrecette->fetch()){
-
-    }
-    $id_recette = $data1['id_recette']+1;
+    $queryrecette= $base->prepare("SELECT count FROM recette WHERE name='$name'");
+    $queryrecette->execute();
+    $data1=$queryrecette->fetch();
+    $id_recette = $data1['count'];
     
+  
+
 
     $query = $base->prepare('SELECT idingredient,quantite,unite FROM tempo WHERE 1');
     $query->execute();
@@ -77,7 +78,7 @@ else {
         $id_ingredient=$data['idingredient'];
         $quantite = $data['quantite'];
         $type_quantite = $data['unite'];
-        $queryinsert-execute(array(
+        $queryinsert->execute(array(
             'id_ingredient' => $id_ingredient,
             'id_recette' => $id_recette,
             'quantite' => $quantite,
